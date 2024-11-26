@@ -14,12 +14,12 @@ class EaterMaps(scrapy.Spider):
             item['address'] = r.css('div.c-mapstack__address a::text').extract_first()
             if not item['address']: continue
 
-            item['name'] = r.css('h1::text').extract_first()
+            item['venue_name'] = r.css('h1::text').extract_first()
             item['description'] = r.css('p::text').extract_first()
             item['gmaps_url'] = r.css('div.c-mapstack__address a::attr(href)').get()
             item['website'] = r.css('a[data-analytics-link="link-icon"]::attr(href)').get()
-            item['source'] = 'Eater Maps'
-            item['source_url'] = response.url
-            item['source_title'] = response.css('title::text').extract_first()
-            item['region'] = 'NYC'
+            item['site'] = 'Eater Maps'
+            item['site_url'] = response.url
+            item['site_title'] = response.css('title::text').extract_first()
+            item['territory'] = 'NYC'
             yield item
