@@ -15,7 +15,7 @@ class EaterMaps(scrapy.Spider):
             if not item['address']: continue
 
             item['venue_name'] = r.css('h1::text').extract_first()
-            item['description'] = r.css('p::text').extract_first()
+            item['description'] = ' '.join(r.css('div.c-entry-content').css('::text').getall())
             item['gmaps_url'] = r.css('div.c-mapstack__address a::attr(href)').get()
             item['website'] = r.css('a[data-analytics-link="link-icon"]::attr(href)').get()
             item['site'] = 'Eater Maps'
